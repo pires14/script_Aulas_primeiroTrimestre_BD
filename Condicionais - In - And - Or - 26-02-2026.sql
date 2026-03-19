@@ -1,15 +1,30 @@
-select * from tabela_de_produtos where sabor = 'Manga' and not (tamanho = '470 ml');
+CREATE SCHEMA sucos_vendas;
+use sucos_vendas;
 
-select * from tabela_de_produtos where sabor = 'Manga' or not (tamanho = '470 ml');
+SELECT * FROM 
+tabela_de_produtos;
 
-select * from tabela_de_produtos where sabor in ('Manga', 'Laranja');
+SELECT * FROM tabela_de_produtos 
+WHERE codigo_do_produto = '1096818';
 
-select * from tabela_de_clientes where cidade in('Rio de Janeiro','São Paulo');
+SELECT * FROM tabela_de_produtos 
+WHERE nome_do_produto = 'Linha Refrescante - 700 ml - Manga';
 
-select * from tabela_de_clientes where cidade in('Rio de Janeiro','São Paulo') and idade > 20;
+SELECT preco_de_lista from tabela_de_produtos
+WHERE preco_de_lista BETWEEN 10.4 AND 10.6;
 
-select * from tabela_de_clientes where cidade in('Rio de Janeiro','São Paulo') and idade >= 20;
+SELECT * FROM tabela_de_produtos
+WHERE sabor = 'Manga' OR sabor = 'Abacaxi';
 
+SELECT * FROM tabela_de_produtos
+WHERE sabor = 'Manga' AND tamanho = '3 ml'; 
 
+SELECT * FROM tabela_de_produtos 
+WHERE sabor = 'manga' OR NOT (tamanho = '470 ml');
 
+SELECT * FROM tabela_de_produtos WHERE 
+sabor IN ('Manga', 'Laranja');
 
+SELECT cidade, idade FROM tabela_de_clientes
+WHERE cidade IN ('Rio de Janeiro', 'São Paulo')
+AND idade >= 20;
