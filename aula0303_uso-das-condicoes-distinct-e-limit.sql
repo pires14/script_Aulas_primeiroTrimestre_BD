@@ -1,26 +1,51 @@
-create database sucos_vendas;
+#Uso do DISTINCT
+select * from tabela_de_produtos;
 
-#USO DA CONDIÇÃO DISTINCT:
+SELECT DISTINCT EMBALAGEM, SABOR FROM tabela_de_produtos;
 
-select distinct embalagem, tamanho from tabela_de_produtos;
+SELECT DISTINCT EMBALAGEM, TAMANHO, SABOR FROM TABELA_DE_PRODUTOS
+WHERE embalagem = 'PET';
 
-select embalagem, tamanho from tabela_de_produtos where sabor = 'Laranja';
+# Quais os bairros da cidade do Rio de Janeiro 
+# que possuem clientes?
+SELECT DISTINCT BAIRRO, CIDADE FROM tabela_de_clientes 
+WHERE cidade = 'Rio de Janeiro'; 
 
-select distinct embalagem, tamanho, sabor, preco_de_lista from tabela_de_produtos where sabor = 'Laranja';
+#Uso do LIMIT
+SELECT * FROM tabela_de_produtos LIMIT 6;
 
--- Quais os bairros do Rio de Janeiro que posseum clientes?
-select distinct bairro from tabela_de_clientes where cidade = 'Rio de Janeiro';
+SELECT * FROM TABELA_DE_PRODUTOS LIMIT 3,5;
 
-select distinct bairro, cidade, estado from tabela_de_clientes where cidade = 'Rio de Janeiro';
+# Deseja-se obter as 10 primeiras 
+-- vendas do dia 2017-01-01
+SELECT * FROM notas_fiscais WHERE data_venda = '2017-01-01'
+LIMIT 10;
 
-#USO DA CONDIÇÃO LIMIT:
+#Uso do ORDER BY
 
-select * from tabela_de_produtos limit 5;
+select * from tabela_de_produtos;
+select * from tabela_de_produtos ORDER BY NOME_DO_PRODUTO;
+select * from tabela_de_produtos ORDER BY PRECO_DE_LISTA;
 
--- Quais as primeiras 10 vendas do dia 01/01/2017
+select * from tabela_de_produtos
+ORDER BY sabor, preco_de_lista;
 
-select * from notas_fiscais where data_venda = '2017-01-01' limit 10;
+#Teste com DESC
+SELECT sabor, preco_de_lista FROM
+tabela_de_produtos ORDER BY preco_de_lista DESC;
 
-select * from notas_fiscais where data_vendas = '2017-01-01' limit 5,10;
+SELECT sabor, preco_de_lista FROM
+tabela_de_produtos ORDER BY preco_de_lista ASC;
+
+#Qual (ou quais) foi (foram) a(s) maior(es) venda(s)
+-- do produto 'Linha Refrescante - 1 Litro - Morango/Limão
+-- em quantidade e preço?
+SELECT * FROM tabela_de_produtos 
+where nome_do_produto 
+= 'Linha Refrescante - 1 Litro - Morango/Limão';
+
+SELECT DISTINCT * FROM itens_notas_fiscais 
+WHERE CODIGO_DO_PRODUTO = '1101035'
+ORDER BY preco DESC, quantidade DESC;
 
 
